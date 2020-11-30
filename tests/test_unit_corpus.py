@@ -1,5 +1,6 @@
 import unittest
 import sys
+import os
 from Corpus import Corpus
 from unittest.mock import patch, Mock, MagicMock, PropertyMock
 
@@ -45,6 +46,8 @@ token count:  4
         self,
     ):
         # Arrange
+        if os.path.exists("./tests/data/hockey/corpus_cache.txt"):
+            os.remove("./tests/data/hockey/corpus_cache.txt")
 
         # Act
         results = Corpus(corpus_location="./tests/data/hockey/")
@@ -53,7 +56,7 @@ token count:  4
         # Assert
         expected = """
 location:     ./tests/data/hockey/
-corpus_file:  ./tests/data/hockey/corpus_cache.txt
+corpus_file:  ./tests/data/hockey/corpus.txt
 text:         
 token count:  4043
 """

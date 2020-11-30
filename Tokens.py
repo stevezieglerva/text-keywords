@@ -71,14 +71,11 @@ top trigram counts: {}
         lowers = text.lower()
         email_address_pattern = "[^ ]+@[^ ]+"
         lowers = re.sub(email_address_pattern, " ", lowers)
-
-        # 		print("Removing punc")
         no_punctuation = lowers.translate(
             str.maketrans("", "", string.punctuation.replace("-", ""))
         )
+        # no_punctuation = lowers.replace("-", "")
 
-        # 		print(datetime.now())
-        # 		print("Getting tokens")
         t.start_timer("13 - tokenize")
         tokens = nltk.word_tokenize(no_punctuation)
         self.word_count = len(tokens)
@@ -136,7 +133,6 @@ top trigram counts: {}
                 word_1 = bigram[0]
                 word_2 = bigram[1]
                 bigram_string = word_1 + " " + word_2
-                print(f"checking bigram: {bigram_string}")
                 if (
                     bigram_string not in stopwords_eng
                     and word_1 not in stopwords_eng
