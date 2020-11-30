@@ -84,12 +84,20 @@ class Keywords:
                 top_keyword_scores.add((count * normalizing_multiplier, token_text))
 
         # Add the 1 grams
+        most_frequent_tokens_from_corpus = [
+            t[1] for t in self.corpus.most_frequent_tokens.values
+        ]
+        print(f"most_frequent_tokens_from_corpus: {most_frequent_tokens_from_corpus}")
         for token in tokens.token_1gram_counts:
             count = token[0]
             token_text = token[1]
-            possible_keywords.append(token_text)
-            self.__scores[token_text] = str(count)
-            top_keyword_scores.add((count, token_text))
+            if token_text not in most_frequent_tokens_from_corpus:
+                print(f"*** still including {token}")
+                possible_keywords.append(token_text)
+                self.__scores[token_text] = str(count)
+                top_keyword_scores.add((count, token_text))
+            else:
+                print(f"*** not including {token}")
 
         top_score_keywords = [x[1] for x in top_keyword_scores.values]
         top_score_keywords = self.__remove_versions_of_compound_words_from_list(
