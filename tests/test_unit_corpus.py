@@ -78,19 +78,20 @@ token count:  3747
 
         # Assert
         top_tokens = [t[1] for t in results.most_frequent_tokens.values]
+        print(f"\n\n\n{top_tokens}")
         self.assertEqual(
             top_tokens,
             [
-                "-",
-                "said",
-                "cancer",
-                "name",
-                "los angeles kings",
-                "los angeles",
-                "los",
-                "kings",
-                "free",
-                "angeles kings",
+                "nhl",
+                "nhlcom",
+                "hockey",
+                "november",
+                "capitals",
+                "season",
+                "fantasy",
+                "logo",
+                "team",
+                "share",
             ],
         )
 
