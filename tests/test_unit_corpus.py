@@ -62,6 +62,22 @@ token count:  3747
 """
         self.assertEqual(str(results), expected)
 
+    def test_create_stop_word_file__given_hockey_corpus__then_correct_first_value_is_returned(
+        self,
+    ):
+        # Arrange
+        if os.path.exists("./tests/data/hockey/corpus_cache.txt"):
+            os.remove("./tests/data/hockey/corpus_cache.txt")
+        corpus = Corpus(corpus_location="./tests/data/hockey/")
+
+        # Act
+        results = ""
+        with patch("builtins.open", unittest.mock.mock_open()) as m:
+            results = corpus.create_stop_word_file()
+
+        # Assert
+        self.assertEqual(results, ((0.013704558568955569, "nhl"), 37))
+
 
 if __name__ == "__main__":
     unittest.main()

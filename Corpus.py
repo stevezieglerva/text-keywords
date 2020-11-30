@@ -6,6 +6,13 @@ from TopX import *
 
 
 class Corpus:
+    """Create a corpus object.
+    Keyword arguments:
+    corpus_location --- directory containing the "corpus.txt" file
+    corpus_text --- string containing the text of a small corpus
+
+    Print the returned object to get information about read corpus."""
+
     def __init__(self, **kwargs):
         self.location = kwargs.get("corpus_location", "")
         self.corpus_file = ""
@@ -18,7 +25,7 @@ class Corpus:
 location: {}
 text: {}
 token_frequencies: {}
-		"""
+        """
         return text.format(self.location, self.text, self.token_frequencies)
 
     def __str__(self):
@@ -92,6 +99,7 @@ token count:  {}
         return corpus_frequency
 
     def create_stop_word_file(self):
+        """Write the most frequent tokens to "stop_words.txt" that can be used with the Keywords class to ignore some high frequency words and return a tuple of most frequent token added to stop words and the count of stop words added."""
         total_tokens = len(self.token_frequencies)
         top_percentage = int(total_tokens * 0.01)
         print("top percentage: {}".format(top_percentage))
@@ -106,4 +114,7 @@ token count:  {}
 
         with open("stop_words.txt", "w") as f:
             for x in top_values.values:
+                print(x)
                 f.write(x[1] + "\n")
+        first_value = top_values.values[0]
+        return (first_value, top_percentage)
