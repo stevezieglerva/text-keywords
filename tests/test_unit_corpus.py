@@ -48,6 +48,8 @@ token count:  4
         # Arrange
         if os.path.exists("./tests/data/hockey/corpus_cache.txt"):
             os.remove("./tests/data/hockey/corpus_cache.txt")
+        if os.path.exists("stop_words.txt"):
+            os.remove("stop_words.txt")
 
         # Act
         results = Corpus(corpus_location="./tests/data/hockey/")
@@ -68,6 +70,8 @@ token count:  3747
         # Arrange
         if os.path.exists("./tests/data/hockey/corpus_cache.txt"):
             os.remove("./tests/data/hockey/corpus_cache.txt")
+        if os.path.exists("stop_words.txt"):
+            os.remove("stop_words.txt")
 
         # Act
         results = Corpus(corpus_location="./tests/data/hockey/")
@@ -96,6 +100,8 @@ token count:  3747
         # Arrange
         if os.path.exists("./tests/data/hockey/corpus_cache.txt"):
             os.remove("./tests/data/hockey/corpus_cache.txt")
+        if os.path.exists("stop_words.txt"):
+            os.remove("stop_words.txt")
         corpus = Corpus(corpus_location="./tests/data/hockey/")
 
         # Act
