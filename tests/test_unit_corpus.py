@@ -19,7 +19,7 @@ class CorpusUnitTests(unittest.TestCase):
 location:     
 corpus_file:  
 text:         hello world
-token count:  2
+token count:  3
 """
         self.assertEqual(str(results), expected)
 
