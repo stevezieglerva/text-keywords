@@ -62,6 +62,34 @@ token count:  3747
 """
         self.assertEqual(str(results), expected)
 
+    def test_constructor__given_hockey_corpus__then_most_frequent_tokens_correct(
+        self,
+    ):
+        # Arrange
+        if os.path.exists("./tests/data/hockey/corpus_cache.txt"):
+            os.remove("./tests/data/hockey/corpus_cache.txt")
+
+        # Act
+        results = Corpus(corpus_location="./tests/data/hockey/")
+
+        # Assert
+        top_tokens = [t[1] for t in results.most_frequent_tokens.values]
+        self.assertEqual(
+            top_tokens,
+            [
+                "-",
+                "said",
+                "cancer",
+                "name",
+                "los angeles kings",
+                "los angeles",
+                "los",
+                "kings",
+                "free",
+                "angeles kings",
+            ],
+        )
+
     def test_create_stop_word_file__given_hockey_corpus__then_correct_first_value_is_returned(
         self,
     ):

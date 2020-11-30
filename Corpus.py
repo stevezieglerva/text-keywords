@@ -19,6 +19,7 @@ class Corpus:
         self.text = kwargs.get("corpus_text", "")
         self.token_meta_data = ""
         self.token_frequencies = self.__get_corpus_data()
+        self.most_frequent_tokens = self.__get_frequent_tokens(10)
 
     def __repr__(self):
         text = """
@@ -118,3 +119,14 @@ token count:  {}
                 f.write(x[1] + "\n")
         first_value = top_values.values[0]
         return (first_value, top_percentage)
+
+    def __get_frequent_tokens(self, top_n=10):
+        top_values = TopX(top_n)
+        count = 0
+        for token in self.token_frequencies:
+            count = count + 1
+            if count % 1000 == 0:
+                print(count)
+            value = self.token_frequencies[token]
+            top_values.add((value, token))
+        return top_values
