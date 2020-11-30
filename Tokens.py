@@ -71,6 +71,9 @@ top trigram counts: {}
         lowers = text.lower()
         email_address_pattern = "[^ ]+@[^ ]+"
         lowers = re.sub(email_address_pattern, " ", lowers)
+        url_pattern = r"https*:[^ ]+\.[a-zA-z]+"
+        lowers = re.sub(url_pattern, " ", lowers)
+
         no_punctuation = lowers.translate(
             str.maketrans("", "", string.punctuation.replace("-", ""))
         )
