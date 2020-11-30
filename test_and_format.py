@@ -6,6 +6,9 @@ from unittest.mock import MagicMock, Mock, PropertyMock, patch
 
 import HtmlTestRunner
 
+sys.path.insert(0, "./venv/lib/python3.7/site-packages")
+print(sys.path)
+
 
 def print_results(pattern):
     print("\n\n🗃  Test Results:")

@@ -1,5 +1,5 @@
-# import nltk
-# from nltk.corpus import stopwords
+import nltk
+from nltk.corpus import stopwords
 import string
 from collections import Counter
 from collections import OrderedDict
@@ -103,8 +103,8 @@ top trigram counts: {}
         avg_tokens_per_byte = 0.045
         expected_tokens = int(len(self.text) / avg_tokens_per_byte)
 
-        bigram_filtered = [expected_tokens]
-        trigram_filtered = [expected_tokens]
+        bigram_filtered = []
+        trigram_filtered = []
 
         # 		print(datetime.now())
         # 		print("Getting grams")
@@ -137,6 +137,7 @@ top trigram counts: {}
                 word_1 = bigram[0]
                 word_2 = bigram[1]
                 bigram_string = word_1 + " " + word_2
+                print(f"checking bigram: {bigram_string}")
                 if (
                     bigram_string not in stopwords_eng
                     and word_1 not in stopwords_eng
@@ -170,11 +171,14 @@ top trigram counts: {}
         counts = {}
         for bigram in bigram_filtered:
             if bigram in counts:
+                print(f"incrementing bigram count: {bigram}")
                 counts[bigram] = counts[bigram] + 1
             else:
+                print(f"setting bigram count to 1: {bigram}")
                 counts[bigram] = 1
         top = TopX(self.TOPN_COUNT)
         for bigram in counts:
+            print(f"checking bigram counts: {bigram}")
             combo = (counts[bigram], str(bigram))
             top.add(combo)
         self.token_bigram_counts = top.values

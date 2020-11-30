@@ -2,7 +2,6 @@ from Tokens import *
 import os
 import re
 
-# from nltk.corpus import brown
 from TopX import *
 
 
@@ -28,7 +27,7 @@ location:     {}
 corpus_file:  {}
 text:         {}
 token count:  {}
-		"""
+"""
         corpus_text = self.text
         if len(self.text) > 100:
             corpus_text = self.text[0:100]
