@@ -64,15 +64,23 @@ top trigram counts: {}
             list.append(token[1])
         return list
 
+    def __remove_address_addresses(self, text):
+        email_address_pattern = "[^ ]+@[^ ]+"
+        text = re.sub(email_address_pattern, " ", text)
+        return text
+
+    def __remove_urls(self, text):
+        url_pattern = r"https*:[^ ]+\.[a-zA-z]+"
+        text = re.sub(url_pattern, " ", text)
+        return text
+
     def __get_tokens(self, text):
         t = TimerCollection()
         t.start_timer("10 - Total Process")
         t.start_timer("15 - First Half")
         lowers = text.lower()
-        email_address_pattern = "[^ ]+@[^ ]+"
-        lowers = re.sub(email_address_pattern, " ", lowers)
-        url_pattern = r"https*:[^ ]+\.[a-zA-z]+"
-        lowers = re.sub(url_pattern, " ", lowers)
+        lowers = self.__remove_address_addresses(lowers)
+        lowers = self.__remove_urls(lowers)
 
         no_punctuation = lowers.translate(
             str.maketrans("", "", string.punctuation.replace("-", ""))
