@@ -69,9 +69,8 @@ top trigram counts: {}
         t.start_timer("10 - Total Process")
         t.start_timer("15 - First Half")
         lowers = text.lower()
-        # remove the punctuation using the character deletion step of translate
-        # 		print(datetime.now())
-        lowers = re.sub("[^ ]+@[^ ]+", " ", lowers)
+        email_address_pattern = "[^ ]+@[^ ]+"
+        lowers = re.sub(email_address_pattern, " ", lowers)
 
         # 		print("Removing punc")
         no_punctuation = lowers.translate(
@@ -171,14 +170,11 @@ top trigram counts: {}
         counts = {}
         for bigram in bigram_filtered:
             if bigram in counts:
-                print(f"incrementing bigram count: {bigram}")
                 counts[bigram] = counts[bigram] + 1
             else:
-                print(f"setting bigram count to 1: {bigram}")
                 counts[bigram] = 1
         top = TopX(self.TOPN_COUNT)
         for bigram in counts:
-            print(f"checking bigram counts: {bigram}")
             combo = (counts[bigram], str(bigram))
             top.add(combo)
         self.token_bigram_counts = top.values
