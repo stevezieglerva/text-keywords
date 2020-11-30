@@ -58,7 +58,7 @@ token count:  4
 location:     ./tests/data/hockey/
 corpus_file:  ./tests/data/hockey/corpus.txt
 text:         
-token count:  4043
+token count:  3747
 """
         self.assertEqual(str(results), expected)
 

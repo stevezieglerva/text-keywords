@@ -74,6 +74,11 @@ top trigram counts: {}
         text = re.sub(url_pattern, " ", text)
         return text
 
+    def __remove_number_strings(self, text):
+        number_string_pattern = r"[0-9][0-9]+"
+        text = re.sub(number_string_pattern, " ", text)
+        return text
+
     def __get_tokens(self, text):
         t = TimerCollection()
         t.start_timer("10 - Total Process")
@@ -81,6 +86,7 @@ top trigram counts: {}
         lowers = text.lower()
         lowers = self.__remove_address_addresses(lowers)
         lowers = self.__remove_urls(lowers)
+        lowers = self.__remove_number_strings(lowers)
 
         no_punctuation = lowers.translate(
             str.maketrans("", "", string.punctuation.replace("-", ""))

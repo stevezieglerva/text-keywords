@@ -158,14 +158,14 @@ top trigram counts: [(1, 'los angelos kings')]
         # Assert
         expected = """
 text length:        126
-token count:        24
-word count:         20
+token count:        18
+word count:         18
 
-top token counts:   [(2, 'washington'), (2, 'dc'), (2, 'washington dc'), (1, 'president'), (1, 'lives'), (1, '1600'), (1, 'pennsylvania'), (1, 'avenue'), (1, 'nw'), (1, '20500'), (1, 'important'), (1, 'residence'), (1, 'president lives'), (1, '1600 pennsylvania'), (1, 'pennsylvania avenue'), (1, 'avenue nw'), (1, 'nw washington'), (1, 'dc 20500'), (1, 'important residence'), (1, '1600 pennsylvania avenue')]
+top token counts:   [(2, 'washington'), (2, 'dc'), (2, 'washington dc'), (1, 'president'), (1, 'lives'), (1, 'pennsylvania'), (1, 'avenue'), (1, 'nw'), (1, 'important'), (1, 'residence'), (1, 'president lives'), (1, 'pennsylvania avenue'), (1, 'avenue nw'), (1, 'nw washington'), (1, 'pennsylvania avenue nw'), (1, 'avenue nw washington'), (1, 'nw washington dc'), (1, 'important residence')]
 
-top bigram counts:  [(2, 'washington dc'), (1, 'president lives'), (1, 'pennsylvania avenue'), (1, 'nw washington'), (1, 'important residence'), (1, 'dc 20500'), (1, 'avenue nw'), (1, '1600 pennsylvania')]
+top bigram counts:  [(2, 'washington dc'), (1, 'president lives'), (1, 'pennsylvania avenue'), (1, 'nw washington'), (1, 'important residence'), (1, 'avenue nw')]
 
-top trigram counts: [(1, 'washington dc 20500'), (1, 'pennsylvania avenue nw'), (1, 'nw washington dc'), (1, 'avenue nw washington'), (1, '1600 pennsylvania avenue')]
+top trigram counts: [(1, 'pennsylvania avenue nw'), (1, 'nw washington dc'), (1, 'avenue nw washington')]
 """
         self.assertEqual(str(results), expected)
 
