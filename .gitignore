@@ -129,3 +129,4 @@ dmypy.json
 .pyre/
 text-keywords.code-workspace
 reports/**/**
+tests/data/work/**/**
