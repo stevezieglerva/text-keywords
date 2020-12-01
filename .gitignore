@@ -130,4 +130,4 @@ dmypy.json
 text-keywords.code-workspace
 reports/**/**
 tests/data/work/**/**
-tests/test_unit_keywords_work.py
+tests/test_*_work.py
