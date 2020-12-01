@@ -33,7 +33,6 @@ class Keywords:
             formula = "{0: <30}\t{1: <30}\t= \tmath.log(({2} * 2) / {3} )".format(
                 token, rank, current_token_frequency, current_corpus_frequency
             )
-            print(f"adding: {formula}")
             self.__scores[token] = formula
             token_ranks[token] = rank
             sorted_token_ranks = sorted(token_ranks, key=token_ranks.get, reverse=True)
