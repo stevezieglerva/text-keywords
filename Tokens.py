@@ -75,7 +75,7 @@ top trigram counts: {}
         return text
 
     def __remove_number_strings(self, text):
-        number_string_pattern = r"[0-9][0-9]+"
+        number_string_pattern = r" [0-9][0-9]+"
         text = re.sub(number_string_pattern, " ", text)
         return text
 

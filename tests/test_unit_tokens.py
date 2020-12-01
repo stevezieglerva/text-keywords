@@ -169,6 +169,29 @@ top trigram counts: [(1, 'pennsylvania avenue nw'), (1, 'nw washington dc'), (1,
 """
         self.assertEqual(str(results), expected)
 
+    def test_constructor__given_word_with_number__then_correct_tokens_found(
+        self,
+    ):
+        # Arrange
+
+        # Act
+        results = Tokens("The President had COVID-19.")
+        print(results)
+
+        # Assert
+        expected = """
+text length:        27
+token count:        2
+word count:         4
+
+top token counts:   [(1, 'president'), (1, 'covid-19')]
+
+top bigram counts:  []
+
+top trigram counts: []
+"""
+        self.assertEqual(str(results), expected)
+
 
 if __name__ == "__main__":
     unittest.main()
