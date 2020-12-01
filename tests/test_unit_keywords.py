@@ -71,16 +71,15 @@ All original content on russianmachineneverbreaks.com is licensed under Creative
         expected = [
             "goal",
             "orpik",
-            "",
-            "period",
-            "scoring",
             "knights",
             "puck",
-            "unexpected",
-            "score",
-            "breakaway",
+            "2018",
         ]
-        self.assertEqual(results.keywords, expected)
+        for keyword in expected:
+            self.assertTrue(
+                keyword in results.keywords,
+                f"Expected to find '{keyword}' in {results.keywords}",
+            )
 
     def test_constructor__given_nhl_wikipedia_page__then_correct_keywords_returned(
         self,
