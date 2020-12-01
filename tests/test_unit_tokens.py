@@ -192,6 +192,29 @@ top trigram counts: []
 """
         self.assertEqual(str(results), expected)
 
+    def test_constructor__given_word_with_2000_year__then_year_token_included(
+        self,
+    ):
+        # Arrange
+
+        # Act
+        results = Tokens("The year is 2013.")
+        print(results)
+
+        # Assert
+        expected = """
+text length:        17
+token count:        2
+word count:         4
+
+top token counts:   [(1, 'year'), (1, '2013')]
+
+top bigram counts:  []
+
+top trigram counts: []
+"""
+        self.assertEqual(str(results), expected)
+
 
 if __name__ == "__main__":
     unittest.main()

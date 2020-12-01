@@ -75,9 +75,13 @@ top trigram counts: {}
         return text
 
     def __remove_number_strings(self, text):
-        number_string_pattern = r" [0-9][0-9][0-9][0-9][0-9]+"
-        text = re.sub(number_string_pattern, " ", text)
-        return text
+        recent_years_pattern = "(2[0-9][0-9][0-9][^0-9])"
+        updated_recent_years = re.sub(recent_years_pattern, r"year\1", text)
+        number_string_pattern = r" [0-9][0-9]+"
+        text = re.sub(number_string_pattern, " ", updated_recent_years)
+        fix_years_pattern = r"year(2[0-9][0-9][0-9][^0-9])"
+        years_restored = re.sub(fix_years_pattern, r"\1", text)
+        return years_restored
 
     def __get_tokens(self, text):
         t = TimerCollection()
