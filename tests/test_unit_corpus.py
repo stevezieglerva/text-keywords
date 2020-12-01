@@ -60,7 +60,7 @@ token count:  4
 location:     ./tests/data/hockey/
 corpus_file:  ./tests/data/hockey/corpus.txt
 text:         
-token count:  3829
+token count:  3890
 """
         self.assertEqual(str(results), expected)
 
@@ -101,7 +101,7 @@ token count:  3829
             results = corpus.create_stop_word_file()
 
         # Assert
-        self.assertEqual(results, ((0.013420902341519133, "nhl"), 38))
+        self.assertEqual(results, ((0.013080990815474534, "nhl"), 38))
 
 
 if __name__ == "__main__":
