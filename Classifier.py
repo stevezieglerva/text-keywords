@@ -1,6 +1,7 @@
 from Corpus import Corpus
 from Keywords import Keywords
 from Tokens import *
+import json
 
 
 class SetTag:
@@ -17,21 +18,35 @@ options: {self.options}"""
         return self.__str__()
 
 
+class ClassiferResults:
+    def __init__(self, keywords, set_tags):
+        self.keywords = keywords
+        self.set_tags = set_tags
+
+
 class TextClassifer:
-    def __init__(self, corpus_path, text, **kwargs):
+    def __init__(self, corpus_path, text="", **kwargs):
         self.__set_tags_list = kwargs.get("set_tags", [])
         self.corpus_path = corpus_path
         self.text = text
         self.corpus = Corpus(corpus_location=corpus_path)
         self.__keywords_obj = Keywords(self.corpus)
-        self.keywords = self.__keywords_obj.get_keywords(self.text).keywords
         self.set_tags = {}
 
+    def classify_text(self, text):
+        keywords = self.__keywords_obj.get_keywords(text)
+        set_tags = self.__determine_set_tags(text)
+        results = ClassiferResults(keywords.keywords, set_tags)
+        return results
+
+    def __determine_set_tags(self, text):
         self.__tokens = Tokens(text)
         print(self.__tokens)
 
-        top = TopX(2)
+        set_tags = {}
+
         for set_tag in self.__set_tags_list:
+            top = TopX(2)
             print(set_tag)
             option_found = False
             for option in set_tag.options:
@@ -44,8 +59,10 @@ class TextClassifer:
                 most_frequent_term_info = top.values[0]
                 second_most_frequent_term_info = top.values[1]
                 if most_frequent_term_info[0] > second_most_frequent_term_info[0]:
-                    self.set_tags[set_tag.set_tag_name] = most_frequent_term_info[1]
+                    set_tags[set_tag.set_tag_name] = most_frequent_term_info[1]
                 else:
-                    self.set_tags[set_tag.set_tag_name] = ""
+                    set_tags[set_tag.set_tag_name] = ""
             else:
-                self.set_tags[set_tag.set_tag_name] = ""
+                set_tags[set_tag.set_tag_name] = ""
+        print(json.dumps(set_tags, indent=3))
+        return set_tags

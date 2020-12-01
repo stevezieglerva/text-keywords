@@ -4,13 +4,22 @@ from unittest.mock import patch, Mock, MagicMock, PropertyMock
 
 
 class ClassifierUnitTests(unittest.TestCase):
+    def setUp(self):
+        corpus_location = "./tests/data/hockey/"
+
+        fruit_set_tag = SetTag("fruit", ["apples", "bananas", "pears"])
+        years_set_tag = SetTag("year", ["2020", "2019", "2018"])
+
+        self.classifer = TextClassifer(
+            corpus_location, set_tags=[fruit_set_tag, years_set_tag]
+        )
+
     def test_constructor__given_simple_document__then_keywords_are_correct(self):
         # Arrange
-        corpus_location = "./tests/data/hockey/"
         text_to_classify = "Ovi score the goal in the playoff game."
 
         # Act
-        results = TextClassifer(corpus_location, text_to_classify)
+        results = self.classifer.classify_text(text_to_classify)
 
         # Assert
         self.assertEqual(results.keywords, ["score", "goal"])
@@ -19,10 +28,9 @@ class ClassifierUnitTests(unittest.TestCase):
         # Arrange
         corpus_location = "./tests/data/hockey/"
         text_to_classify = "Apples are the most popular fruit, beating out bananas and pears. Apples grow across the US. "
-        set_tags = SetTag("fruit", ["apples", "bananas", "pears"])
 
         # Act
-        results = TextClassifer(corpus_location, text_to_classify, set_tags=[set_tags])
+        results = self.classifer.classify_text(text_to_classify)
 
         # Assert
         self.assertEqual(results.set_tags["fruit"], "apples")
@@ -38,7 +46,7 @@ class ClassifierUnitTests(unittest.TestCase):
         set_tags = SetTag("fruit", ["apples", "bananas", "pears"])
 
         # Act
-        results = TextClassifer(corpus_location, text_to_classify, set_tags=[set_tags])
+        results = self.classifer.classify_text(text_to_classify)
 
         # Assert
         self.assertEqual(results.set_tags["fruit"], "")
@@ -52,7 +60,7 @@ class ClassifierUnitTests(unittest.TestCase):
         set_tags = SetTag("fruit", ["apples", "bananas", "pears"])
 
         # Act
-        results = TextClassifer(corpus_location, text_to_classify, set_tags=[set_tags])
+        results = self.classifer.classify_text(text_to_classify)
 
         # Assert
         self.assertEqual(results.set_tags["fruit"], "")
@@ -64,7 +72,7 @@ class ClassifierUnitTests(unittest.TestCase):
         set_tags = SetTag("year", ["2020", "2019", "2018"])
 
         # Act
-        results = TextClassifer(corpus_location, text_to_classify, set_tags=[set_tags])
+        results = self.classifer.classify_text(text_to_classify)
 
         # Assert
         self.assertEqual(results.set_tags["year"], "2018")
