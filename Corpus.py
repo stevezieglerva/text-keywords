@@ -122,11 +122,7 @@ token count:  {}
 
     def __get_frequent_tokens(self, top_n=10):
         top_values = TopX(top_n)
-        count = 0
         for token in self.token_frequencies:
-            count = count + 1
-            if count % 1000 == 0:
-                print(count)
             value = self.token_frequencies[token]
             top_values.add((value, token))
         return top_values
