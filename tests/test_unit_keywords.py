@@ -97,28 +97,12 @@ All original content on russianmachineneverbreaks.com is licensed under Creative
         print(str(results))
 
         # Assert
-        expected = [
-            "nhl",
-            "hockey league",
-            "stanley cup",
-            "retrieved",
-            "national",
-            "regular season",
-            "new york",
-            "teams",
-            "players",
-            "united states",
-            "games",
-            "original",
-            "team",
-            "june",
-            "leagues",
-            "montreal canadiens",
-            "main article",
-            "international ice",
-            "toronto maple leafs",
-        ]
-        self.assertEqual(results.keywords, expected)
+        expected = ["hockey league", "stanley cup"]
+        for keyword in expected:
+            self.assertTrue(
+                keyword in results.keywords,
+                f"Expected to find '{keyword}' in {results.keywords}",
+            )
 
 
 if __name__ == "__main__":
