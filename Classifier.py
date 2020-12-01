@@ -26,7 +26,6 @@ class TextClassifer:
         self.__keywords_obj = Keywords(self.corpus)
         self.keywords = self.__keywords_obj.get_keywords(self.text).keywords
         self.set_tags = {}
-        self.set_tags["fruit"] = "2018"
 
         self.__tokens = Tokens(text)
         print(self.__tokens)
@@ -37,7 +36,7 @@ class TextClassifer:
             option_found = False
             for option in set_tag.options:
                 count = self.__tokens.token_counts[option]
-                print(self.__tokens.token_counts[option])
+                print(f"{option}={count}")
                 top.add((count, option))
                 if count >= 2:
                     option_found = True
